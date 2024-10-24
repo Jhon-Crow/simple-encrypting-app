@@ -6,13 +6,14 @@ const encryptButton = document.getElementById('encrypt');
 const decipherButton = document.getElementById('decipher');
 const baseString = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюяABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-={}:<>?,./;[]|~123456789';
 
-function numToLetter(randomNum){
-    if (randomNum > baseString.length) randomNum =- baseString.length;
-    return baseString[randomNum];
+function numToLetter(randomNum) {
+    return baseString[randomNum % baseString.length];
 }
 
-function getRandomNum(){
-    return Math.floor(Math.random()*baseString.length);
+function getRandomNum() {
+    const array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    return array[0];
 }
 
 function getRandomLetter(){
